@@ -22,3 +22,7 @@ const displayHtml = (data) => {
     }
     $('#loading').html(html)
 };
+
+const addMovie = (e) => {
+    e.preventDefault();
+}
