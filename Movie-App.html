@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-<p></p>
-<div id="loading"></div>
+    <p></p>
+    <div id="loading"></div>
 
-<script src="js/movieapp.js"></script>
+    <h1 class="text-center headings">Add a Movie</h1>
+    <form>
+        <div class="form-group">
+                <label for="add-movie-name" class="headings">Movie Title</label>
+                <input type="text" class="form-control bg-dark text-white" id="add-movie-name">
+            </div>
+        <div class="form-group">
+            <label for="add-rating-selection" class="headings">Rating</label>
+            <select class="form-control bg-dark text-white" id="add-rating-selection">
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block bg-submit" id="add-submit">Submit</button>
+    </form>
+
+
+
+
+    <script src="js/movieapp.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </body>
 </html>
