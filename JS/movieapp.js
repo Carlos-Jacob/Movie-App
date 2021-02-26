@@ -7,22 +7,41 @@ $(document).ready(function() {
 
 
 const movieUrl = 'https://rhinestone-spiced-mare.glitch.me/movies'
-fetch(movieUrl)
+
+let movieDatabase = fetch(movieUrl)
     .then(response => response.json())
-    .then(data => displayHtml(data))
+    .then(data => data)
         .catch(console.error);
 
-const displayHtml = (data) => {
-    let html = "";
-    for(let i = 0; i < data.length; i += 1) {
-        let movieTitle = data[i].title;
-        let movieRating = data[i].rating;
-        html += `<div>Title: ${movieTitle}</div>`
-        html += `<div>Rating: ${movieRating}</div>`
-    }
-    $('#loading').html(html)
-};
 
-const addMovie = (e) => {
-    e.preventDefault();
+function displayHtml(movieDatabase) {
+    movieDatabase.then(movies => {
+        let html = "";
+        for(let i = 0; i < movies.length; i += 1) {
+            let movieTitle = movies[i].title;
+            let movieRating = movies[i].rating;
+            html += `<div>Title: ${movieTitle}</div>`
+            html += `<div>Rating: ${movieRating}</div>`
+        }
+        $('#loading').html(html)
+    });
 }
+displayHtml(movieDatabase);
+
+const addMovie = (moviesDatabase) => {
+    // e.preventDefault();
+    moviesDatabase.then(movies => {
+        let newObj = {};
+        newObj.push({
+            title: movieName,
+            rating: movieRating
+        })
+        movies = movies.concat(newObj);
+    })
+}
+addMovie(movieDatabase);
+
+let movieName = $("#add-movie-name").val();
+let movieRating = $("#add-rating-selection").val();
+
+
