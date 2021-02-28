@@ -61,3 +61,42 @@ const addMovie = () => fetch(movieUrl,{
 
 $('#add-submit').on('click', addMovie);
 
+//-------------------- OMDB REQUESTS---------------------
+
+$("#movieForm").submit(function (event) {
+    event.preventDefault()
+
+
+    let movie = $("#movie").val()
+    let result = ""
+    let url = "http://www.omdbapi.com/?apikey="+omdbKey
+
+
+// --------------------DATABASE MOVIE REQUESTS------------------------
+    $.ajax({
+        method: 'GET',
+        url: url + "&t=" + movie,
+        success: function (data) {
+            console.log(data)
+
+// UPON SUCCESS DISPLAYS CHOSEN INFO AND MOVIE POSTER PULLED FROM SITE
+            result = `
+                
+                <img style="float:left" class="img-thumbnail" width="200" height="200"
+                src="${data.Poster}"/>
+                <h2>${data.Title}</h2>
+                <h3>${data.Year}</h3>
+                <h3>${data.Actors}</h3>
+                <h3>Genre: ${data.Genre}</h3>
+                <h3>IMDB Rating: ${data.imdbRating}</h3>
+                
+                `;
+            $("#result").html(result);
+
+        }
+    })
+    })
+
+
+
+
