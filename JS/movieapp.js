@@ -28,20 +28,36 @@ function displayHtml(movieDatabase) {
 }
 displayHtml(movieDatabase);
 
-const addMovie = (moviesDatabase) => {
-    // e.preventDefault();
-    moviesDatabase.then(movies => {
-        let newObj = {};
-        newObj.push({
-            title: movieName,
-            rating: movieRating
-        })
-        movies = movies.concat(newObj);
-    })
-}
-addMovie(movieDatabase);
+// const addMovie = (moviesDatabase) => {
+//     // e.preventDefault();
+//     moviesDatabase.then(movies => {
+//         let newObj = {};
+//         newObj.push({
+//             title: movieName,
+//             rating: movieRating
+//         })
+//         movies = movies.concat(newObj);
+//     })
+// }
+// addMovie(movieDatabase);
 
-let movieName = $("#add-movie-name").val();
+let movieName = $('#add-movie-name').val();
 let movieRating = $("#add-rating-selection").val();
 
+const addMovie = () => fetch(movieUrl,{
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        title: movieName,
+        rating: movieRating
+    },
+    console.log(movieRating))
+})
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(console.error)
+
+$('#add-submit').on('click', addMovie);
 
