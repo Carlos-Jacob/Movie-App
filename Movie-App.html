@@ -7,27 +7,38 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <p></p>
-    <div id="loading"></div>
 
-    <h1 class="text-center headings">Add a Movie</h1>
-    <form>
-        <div class="form-group">
-                <label for="add-movie-name" class="headings">Movie Title</label>
-                <input type="text" class="form-control bg-dark text-white" id="add-movie-name">
+<nav class="navbar navbar-dark bg-primary">
+    <span class="navbar-brand mb-0 h1">Movie World</span>
+</nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="loading"></div>
             </div>
-        <div class="form-group">
-            <label for="add-rating-selection" class="headings">Rating</label>
-            <select class="form-control bg-dark text-white" id="add-rating-selection">
-                <option selected>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+            <div class="col">
+                <h1 class="text-center headings">Add a Movie</h1>
+                <form>
+                    <div class="form-group">
+                            <label for="add-movie-name" class="headings">Movie Title</label>
+                            <input type="text" class="form-control bg-light text-black " id="add-movie-name" required="required">
+                        </div>
+                    <div class="form-group">
+                        <label for="add-rating-selection" class="headings">Rating</label>
+                        <select class="form-control bg-light text-black" id="add-rating-selection">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block bg-submit" id="add-submit">Add Movie</button>
+                </form>
+            </div>
         </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block bg-submit" id="add-submit">Submit</button>
-    </form>
+    </div>
 
 
 
