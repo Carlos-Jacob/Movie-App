@@ -32,6 +32,7 @@ const editMovie = movie => fetch(`${movieUrl}/${movie.id}`, {
     .then(data => {console.log(`Success: edited${JSON.stringify(data)}`)})
     .catch(console.error);
 
+
 //DELETE MOVIE FUNCTION
 const deleteMovie = id => fetch(`${movieUrl}/${id}`, {
     method: 'DELETE',
