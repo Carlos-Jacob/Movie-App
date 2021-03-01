@@ -141,15 +141,17 @@ $("#movieForm").submit(function (event) {
 
 // UPON SUCCESS DISPLAYS CHOSEN INFO AND MOVIE POSTER PULLED FROM SITE
             result = `
-                
+                <div class="card text-white bg-dark">
+                <div class="card-body">
                 <img style="float:left" class="img-thumbnail" width="200" height="200"
                 src="${data.Poster}"/>
-                <h2>${data.Title}</h2>
-                <h3>${data.Year}</h3>
-                <h3>${data.Actors}</h3>
-                <h3>Genre: ${data.Genre}</h3>
-                <h3>IMDB Rating: ${data.imdbRating}</h3>
-                
+                <h2 class="text-white">${data.Title}</h2>
+                <h3 class="text-white">${data.Year}</h3>
+                <h3 class="text-white">${data.Actors}</h3>
+                <h3 class="text-white">Genre: ${data.Genre}</h3>
+                <h3 class="text-white">IMDB Rating: ${data.imdbRating}</h3>
+                </div>
+                </div>
                 `;
             $("#result").html(result);
 
