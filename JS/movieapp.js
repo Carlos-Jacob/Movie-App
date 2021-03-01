@@ -20,8 +20,20 @@ function displayHtml(movieDatabase) {
         for(let i = 0; i < movies.length; i += 1) {
             let movieTitle = movies[i].title;
             let movieRating = movies[i].rating;
-            html += `<div>Title: ${movieTitle}</div>`
-            html += `<div>Rating: ${movieRating}</div>`
+            html += `<table class="table">`;
+            html += `<thead>`;
+            html += `<tr>`;
+            html += `<th scope="col">Movie Title</th>`;
+            html += `<th scope="col">Movie Rating</th>`;
+            html += `</tr>`;
+            html += `</thead>`;
+            html += `<tbody>`;
+            html += `<tr>`;
+            html += `<td>Title: ${movieTitle}</td>`
+            html += `<td>Rating: ${movieRating}</td>`
+            html += `</tr>`;
+            html += `</tbody>`;
+            html += `</table>`;
         }
         $('#loading').html(html)
     });
