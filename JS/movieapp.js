@@ -9,11 +9,11 @@ $(document).ready(function() {
 const movieUrl = 'https://rhinestone-spiced-mare.glitch.me/movies'
 
 //GET MOVIES DATABASE
-// const getMovies = () => fetch(movieUrl)
-//     .then(res => res.json())
-//     .catch(console.error)
-//
-// getMovies().then(movies => console.log(movies));
+const getMovies = () => fetch(movieUrl)
+    .then(res => res.json())
+    .catch(console.error)
+
+getMovies().then(movies => console.log(movies));
 
 //GET MOVIE WITH ID
 const getMovie = id => fetch(`${movieUrl}/${id}`)
@@ -46,8 +46,6 @@ const deleteMovie = id => fetch(`${movieUrl}/${id}`, {
         console.log(`Success: deleted movie with id of ${id}`)})
     .catch(console.error)
 
-// deleteMovie(4).then(console.log);
-
 
 // ADD MOVIE FUNCTION
 const addMovie = movie => fetch(`${movieUrl}`,{
@@ -63,8 +61,6 @@ const addMovie = movie => fetch(`${movieUrl}`,{
     })
     .catch(console.error)
 
-addMovie("Jacob").then(console.log);
-
 let movieDatabase = fetch(movieUrl)
     .then(response => response.json())
     .then(data => data)
@@ -77,25 +73,28 @@ function displayHtml(movieDatabase) {
             let movieTitle = movies[i].title;
             let movieRating = movies[i].rating;
             let movieId = movies[i].id;
-            console.log(movieId)
             html += "<div class='card'>"
-            html += "<div class='card-body'>"
+            html += `<div class='card-body' id="${movieId}">`
             html += `<h3 class='card-title'>Movie Title: ${movieTitle}</h3>`
             html += `<h5 class='card-title'>Rating: ${movieRating}</h5>`
-            html += `<h5 class='card-title d-none' id="hideId">ID: ${movieId}</h5>`
-            html += "<button class=\"btn btn-primary\" id='editBtn' type='button'>Edit</button>"
-            html += "<button class=\"btn btn-primary\" id='deleteBtn' type='button'>Delete</button>"
+            html += `<h5 class='card-title ' id="hideId">${movieId}</h5>`
+            html += "<button class=\"btn btn-primary editBtn\" type='button'>Edit</button>"
+            html += "<button class=\"btn btn-primary deleteBtn\" type='button'>Delete</button>"
             html += "</div>"
             html += "</div>"
 
 
         }
         $('#loading').html(html)
-        $('#editBtn').click(function () {
+        $('.editBtn').click(function () {
             alert("clicked")
         })
-        $('#deleteBtn').click(function () {
-            alert("clicked")
+        // delete event is working but not deleting the specific ID
+        $('.deleteBtn').click(function () {
+            $(this).parent('div').remove();
+            let movieId = $('#hideId').text();
+            console.log(movieId);
+            deleteMovie(movieId).then(console.log);
         })
 
 
