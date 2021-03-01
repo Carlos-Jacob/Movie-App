@@ -41,23 +41,42 @@ displayHtml(movieDatabase);
 // }
 // addMovie(movieDatabase);
 
-let movieName = $('#add-movie-name').val();
-let movieRating = $("#add-rating-selection").val();
+// let movieName = $('#add-movie-name').val();
+// let movieRating = $("#add-rating-selection").val();
+//
+// const addMovie = () => fetch(movieUrl,{
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//         title: movieName,
+//         rating: movieRating
+//     },
+//     console.log(movieRating))
+// })
+//     .then(res => res.json())
+//     .then(data => console.log(data))
+//     .catch(console.error)
 
-const addMovie = () => fetch(movieUrl,{
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+
+
+$('#add-submit').click((e) => {
+    const movieName = $('#add-movie-name').val();
+    const movieRating = $("#add-rating-selection").val();
+    fetch(movieUrl,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: movieName,
+            rating: movieRating
+        })
+    }).then(console.log(JSON.stringify({
         title: movieName,
         rating: movieRating
-    },
-    console.log(movieRating))
+    }))).catch(console.error)
+    e.preventDefault();
 })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(console.error)
-
-$('#add-submit').on('click', addMovie);
 
