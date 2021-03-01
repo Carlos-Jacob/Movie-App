@@ -9,11 +9,11 @@ $(document).ready(function() {
 const movieUrl = 'https://rhinestone-spiced-mare.glitch.me/movies'
 
 //GET MOVIES DATABASE
-const getMovies = () => fetch(movieUrl)
-    .then(res => res.json())
-    .catch(console.error)
-
-getMovies().then(movies => console.log(movies));
+// const getMovies = () => fetch(movieUrl)
+//     .then(res => res.json())
+//     .catch(console.error)
+//
+// getMovies().then(movies => console.log(movies));
 
 //GET MOVIE WITH ID
 const getMovie = id => fetch(`${movieUrl}/${id}`)
@@ -65,7 +65,10 @@ const addMovie = movie => fetch(`${movieUrl}`,{
 
 addMovie("Jacob").then(console.log);
 
-
+let movieDatabase = fetch(movieUrl)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(console.error)
 
 function displayHtml(movieDatabase) {
     movieDatabase.then(movies => {
@@ -73,27 +76,26 @@ function displayHtml(movieDatabase) {
         for(let i = 0; i < movies.length; i += 1) {
             let movieTitle = movies[i].title;
             let movieRating = movies[i].rating;
-            html += `<table class="table">`;
-            html += `<thead>`;
-            html += `<tr>`;
-            html += `<th scope="col">Movie Title</th>`;
-            html += `<th scope="col">Movie Rating</th>`;
-            html += `</tr>`;
-            html += `</thead>`;
-            html += `<tbody>`;
-            html += `<tr>`;
-            html += `<td>Title: ${movieTitle}</td>`
-            html += `<td>Rating: ${movieRating}</td>`
-            html += `</tr>`;
-            html += `</tbody>`;
-            html += `</table>`;
+            let movieId = movies[i].id;
+            console.log(movieId)
+            html += "<div class='card'>"
+            html += "<div class='card-body'>"
+            html += `<h3 class='card-title'>Movie Title: ${movieTitle}</h3>`
+            html += `<h5 class='card-title'>Rating: ${movieRating}</h5>`
+            html += `<h5 class='card-title d-none' id="hideId">ID: ${movieId}</h5>`
+            html += "<button class=\"btn btn-primary\" id='editBtn'>Edit</button>"
+            html += "<button class=\"btn btn-primary\" id='deleteBtn'>Delete</button>"
+            html += "</div>"
+            html += "</div>"
+
+
         }
         $('#loading').html(html)
 
 
     });
 }
-// displayHtml();
+displayHtml(movieDatabase);
 
 
 //------------------------------------------------------------------------
@@ -187,4 +189,14 @@ $("#movieForm").submit(function (event) {
 //     displayHtml();
 // })
 
+
+$('#editBtn').click(function () {
+
+})
+
+$('#deleteBtn').click(function () {
+    alert("clicked")
+
+
+})
 
