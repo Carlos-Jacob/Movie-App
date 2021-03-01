@@ -13,14 +13,12 @@ const getMovies = () => fetch(movieUrl)
     .then(res => res.json())
     .catch(console.error)
 
-getMovies().then(movies => console.log(movies));
 
 //GET MOVIE WITH ID
 const getMovie = id => fetch(`${movieUrl}/${id}`)
     .then(res => res.json())
     .catch(console.error)
 
-getMovie(1).then(movie => console.log(movie));
 
 //EDIT MOVIE FUNCTION
 const editMovie = movie => fetch(`${movieUrl}/${movie.id}`, {
@@ -61,13 +59,14 @@ const addMovie = movie => fetch(`${movieUrl}`,{
     })
     .catch(console.error)
 
-let movieDatabase = fetch(movieUrl)
-    .then(response => response.json())
-    .then(data => data)
-    .catch(console.error)
 
-function displayHtml(movieDatabase) {
-    movieDatabase.then(movies => {
+// let movieDatabase = fetch(movieUrl)
+//     .then(response => response.json())
+//     .then(data => data)
+//     .catch(console.error)
+
+function displayHtml() {
+    getMovies().then(movies => {
         let html = "";
         for(let i = 0; i < movies.length; i += 1) {
             let movieTitle = movies[i].title;
@@ -82,10 +81,9 @@ function displayHtml(movieDatabase) {
             html += "<button class=\"btn btn-primary deleteBtn\" type='button'>Delete</button>"
             html += "</div>"
             html += "</div>"
-
-
         }
         $('#loading').html(html)
+
         $('.editBtn').click(function () {
             alert("clicked")
         })
@@ -113,16 +111,13 @@ function displayHtml(movieDatabase) {
             }).then(console.log(JSON.stringify({
                 title: movieName,
                 rating: movieRating
-            }))).catch(console.error)
+            }))).then(displayHtml)
+                .catch(console.error)
             e.preventDefault();
-            displayHtml();
         })
-
-
-
     });
 }
-displayHtml(movieDatabase);
+displayHtml();
 
 
 //------------------------------------------------------------------------
@@ -159,10 +154,6 @@ $("#movieForm").submit(function (event) {
 
         }
     })
-
-
-
-
 })
 
 
