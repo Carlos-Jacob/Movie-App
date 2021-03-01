@@ -35,10 +35,57 @@ function displayHtml(movieDatabase) {
             html += `</tbody>`;
             html += `</table>`;
         }
-        $('#loading').html(html)
+        $('#loading').html(html).hide()
+
+
     });
 }
 displayHtml(movieDatabase);
+
+
+const searchMovie =  id =>  fetch(`${movieUrl}/${id}`)
+    .then(res => res.json())
+    .then( data =>  data)
+    .catch(console.error);
+console.log( searchMovie(15));
+
+// $("#movieForm").submit(function (event) {
+//     event.preventDefault()
+//
+//
+//     let movie = $("#movie").val()
+//     let result = ""
+//     let url = "http://www.omdbapi.com/?apikey="+omdbKey
+//
+//
+// // --------------------DATABASE MOVIE REQUESTS------------------------
+//     $.ajax({
+//         method: 'GET',
+//         url: url + "&t=" + movie,
+//         success: function (data) {
+//             console.log(data)
+//
+// // UPON SUCCESS, DISPLAYS CHOSEN INFO AND MOVIE POSTER PULLED FROM SITE
+//             result = `
+//
+//                 <img style="float:left" class="img-thumbnail" width="200" height="200"
+//                 src="${data.Poster}"/>
+//                 <h2>${data.Title}</h2>
+//                 <h3>${data.Year}</h3>
+//                 <h3>${data.Actors}</h3>
+//                 <h3>Genre: ${data.Genre}</h3>
+//                 <h3>IMDB Rating: ${data.imdbRating}</h3>
+//
+//                 `;
+//             $("#result").html(result);
+//
+//         }
+//     })
+// })
+
+
+
+
 
 // const addMovie = (moviesDatabase) => {
 //     // e.preventDefault();
@@ -78,6 +125,24 @@ $('#add-submit').click((e) => {
     const movieRating = $("#add-rating-selection").val();
     fetch(movieUrl,{
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: movieName,
+            rating: movieRating
+        })
+    }).then(console.log(JSON.stringify({
+        title: movieName,
+        rating: movieRating
+    }))).catch(console.error)
+    e.preventDefault();
+})
+
+$('#searchMovie').click((e) => {
+    const movieName = $('#inputMovie').val();
+    fetch(movieUrl,{
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
