@@ -83,14 +83,20 @@ function displayHtml(movieDatabase) {
             html += `<h3 class='card-title'>Movie Title: ${movieTitle}</h3>`
             html += `<h5 class='card-title'>Rating: ${movieRating}</h5>`
             html += `<h5 class='card-title d-none' id="hideId">ID: ${movieId}</h5>`
-            html += "<button class=\"btn btn-primary\" id='editBtn'>Edit</button>"
-            html += "<button class=\"btn btn-primary\" id='deleteBtn'>Delete</button>"
+            html += "<button class=\"btn btn-primary\" id='editBtn' type='button'>Edit</button>"
+            html += "<button class=\"btn btn-primary\" id='deleteBtn' type='button'>Delete</button>"
             html += "</div>"
             html += "</div>"
 
 
         }
         $('#loading').html(html)
+        $('#editBtn').click(function () {
+            alert("clicked")
+        })
+        $('#deleteBtn').click(function () {
+            alert("clicked")
+        })
 
 
     });
@@ -190,13 +196,6 @@ $("#movieForm").submit(function (event) {
 // })
 
 
-$('#editBtn').click(function () {
-
-})
-
-$('#deleteBtn').click(function () {
-    alert("clicked")
 
 
-})
 
