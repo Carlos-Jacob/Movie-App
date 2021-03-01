@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 //MOVIE DATABASE URL
-const movieUrl = 'https://rhinestone-spiced-mare.glitch.me/movies'
+const movieUrl = 'https://chrome-cold-dryosaurus.glitch.me/movies'
 
 //GET MOVIES DATABASE
 const getMovies = () => fetch(movieUrl)
@@ -75,7 +75,7 @@ function displayHtml(movieDatabase) {
             let movieId = movies[i].id;
             html += "<div class='card'>"
             html += `<div class='card-body' id="${movieId}">`
-            html += `<h3 class='card-title'>Movie Title: ${movieTitle}</h3>`
+            html += `<h3 class='card-title'>${movieTitle}</h3>`
             html += `<h5 class='card-title'>Rating: ${movieRating}</h5>`
             html += `<h5 class='card-title ' id="hideId">${movieId}</h5>`
             html += "<button class=\"btn btn-primary editBtn\" type='button'>Edit</button>"
@@ -96,6 +96,28 @@ function displayHtml(movieDatabase) {
             console.log(movieId);
             deleteMovie(movieId).then(console.log);
         })
+        //add
+
+        $('#addBtn').click((e) => {
+            const movieName = $('#add-movie-name').val();
+            const movieRating = $("#add-rating-selection").val();
+            fetch(movieUrl,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: movieName,
+                    rating: movieRating
+                })
+            }).then(console.log(JSON.stringify({
+                title: movieName,
+                rating: movieRating
+            }))).catch(console.error)
+            e.preventDefault();
+            displayHtml();
+        })
+
 
 
     });
@@ -111,88 +133,39 @@ $("#movieForm").submit(function (event) {
 
     let movie = $("#inputMovie").val()
     let result = ""
+    let url = "http://www.omdbapi.com/?apikey="+omdbKey
 
 
-
-// // --------------------DATABASE MOVIE REQUESTS------------------------
-
+// --------------------DATABASE MOVIE REQUESTS------------------------
     $.ajax({
-        method: 'GET',
-        url: "https://rhinestone-spiced-mare.glitch.me/movies/" + movie ,
-        success: function (data) {
+        method:'GET',
+        url:url+"&t="+movie,
+        success:function (data){
             console.log(data)
 
-// UPON SUCCESS, DISPLAYS CHOSEN INFO AND MOVIE POSTER PULLED FROM SITE
-
+// UPON SUCCESS DISPLAYS CHOSEN INFO AND MOVIE POSTER PULLED FROM SITE
             result = `
-
-               
-                <h2>${data.title}</h2>
-               
-               
-              
-
+                
+                <img style="float:left" class="img-thumbnail" width="200" height="200"
+                src="${data.Poster}"/>
+                <h2>${data.Title}</h2>
+                <h3>${data.Year}</h3>
+                <h3>${data.Actors}</h3>
+                <h3>Genre: ${data.Genre}</h3>
+                <h3>IMDB Rating: ${data.imdbRating}</h3>
+                
                 `;
             $("#result").html(result);
 
-
         }
     })
+
+
+
+
 })
 
 
-
-
-//------- PULL VALUE AND SEARCH FOR MOVIE POSTER / DATA FROM OMDB----------------
-
-// $.ajax({
-//     method:'GET',
-//     url:url+"&t="+movie,
-//     success:function (data){
-//         console.log(data)
-//
-// // UPON SUCCESS DISPLAYS CHOSEN INFO AND MOVIE POSTER PULLED FROM SITE
-//         result = `
-//
-//                 <img style="float:left" class="img-thumbnail" width="200" height="200"
-//                 src="${data.Poster}"/>
-//                 <h2>${data.Title}</h2>
-//                 <h3>${data.Year}</h3>
-//                 <h3>${data.Actors}</h3>
-//                 <h3>Genre: ${data.Genre}</h3>
-//                 <h3>IMDB Rating: ${data.imdbRating}</h3>
-//
-//                 `;
-//         $("#result").html(result);
-//
-//     }
-// })
-//
-//
-//
-//
-// })
-
-
-// $('#add-submit').click((e) => {
-//     const movieName = $('#add-movie-name').val();
-//     const movieRating = $("#add-rating-selection").val();
-//     fetch(movieUrl,{
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             title: movieName,
-//             rating: movieRating
-//         })
-//     }).then(console.log(JSON.stringify({
-//         title: movieName,
-//         rating: movieRating
-//     }))).catch(console.error)
-//     e.preventDefault();
-//     displayHtml();
-// })
 
 
 
