@@ -73,13 +73,13 @@ function displayHtml() {
             let movieTitle = movies[i].title;
             let movieRating = movies[i].rating;
             let movieId = movies[i].id;
-            html += "<div class='card'>"
+            html += "<div class='card text-white bg-dark'>"
             html += `<div class='card-body' id="${movieId}">`
             html += `<h3 class='card-title'>${movieTitle}</h3>`
             html += `<h5 class='card-title'>Rating: ${movieRating}</h5>`
             html += `<h5 class='card-title ' id="hideId">${movieId}</h5>`
             html += "<button class=\"btn btn-primary editBtn\" type='button'>Edit</button>"
-            html += "<button class=\"btn btn-primary deleteBtn\" type='button'>Delete</button>"
+            html += "<button class=\"btn btn-danger deleteBtn\" type='button'>Delete</button>"
             html += "</div>"
             html += "</div>"
         }

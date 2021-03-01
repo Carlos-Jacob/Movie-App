@@ -5,7 +5,9 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/movieapp.css">
 </head>
 <body>
 
@@ -16,14 +18,14 @@
 <!--SEARCH FOR A MOVIE-->
 
 <div class="container">
-    <h1 class="text-center mt-5">Movie App</h1>
+    <h1 class="text-center mt-5 text-light bg-dark ">Welcome!</h1>
     <form id="movieForm" autocomplete="off">
         <div class="form-group">
-            <label for="inputMovie">Search for a Movie!</label>
+            <label for="inputMovie"></label>
             <input class="form-control" type="text" id="inputMovie" placeholder="Enter a Movie Name">
         </div>
         <div class="form-group">
-            <button class="btn btn-danger btn-block" id="searchMovie">Search</button>
+            <button class="btn btn-danger btn-block" id="searchMovie">More Info</button>
         </div>
     </form>
     <div id="result"></div>
@@ -37,15 +39,15 @@
                 <div id="loading"></div>
             </div>
             <div class="col">
-                <h1 class="text-center headings">Add a Movie</h1>
+                <h1 class="text-center headings text-light">Add a Movie</h1>
                 <form>
                     <div class="form-group">
-                            <label for="add-movie-name" class="headings">Movie Title</label>
-                            <input type="text" class="form-control bg-light text-black " id="add-movie-name" required="required">
+                            <label for="add-movie-name" class="headings text-light">Movie Title</label>
+                            <input type="text" class="form-control text-white bg-dark " id="add-movie-name" required="required">
                         </div>
                     <div class="form-group">
-                        <label for="add-rating-selection" class="headings">Movie Rating</label>
-                        <select class="form-control bg-light text-black" id="add-rating-selection">
+                        <label for="add-rating-selection" class="headings text-light">Movie Rating</label>
+                        <select class="form-control text-white bg-dark" id="add-rating-selection">
                             <option selected>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -57,15 +59,15 @@
                 </form>
                     <hr>
                     <div class="col">
-                        <h1 class="text-center headings">Edit Movie</h1>
+                        <h1 class="text-center headings text-light">Edit Movie</h1>
                         <form>
                             <div class="form-group">
-                                <label for="edit-movie-name" class="headings">Movie Title</label>
-                                <input type="text" class="form-control bg-light text-black " id="edit-movie-name" required="required">
+                                <label for="edit-movie-name" class="headings text-light">Movie Title</label>
+                                <input type="text" class="form-control text-white bg-dark " id="edit-movie-name" required="required">
                             </div>
                             <div class="form-group">
-                                <label for="edit-rating-selection" class="headings">Movie Rating</label>
-                                <select class="form-control bg-light text-black" id="edit-rating-selection">
+                                <label for="edit-rating-selection" class="headings text-light">Movie Rating</label>
+                                <select class="form-control text-white bg-dark" id="edit-rating-selection">
                                     <option selected>1</option>
                                     <option>2</option>
                                     <option>3</option>
