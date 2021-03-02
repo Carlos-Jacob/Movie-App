@@ -33,6 +33,7 @@ const editMovie = movie => fetch(`${movieUrl}/${movie.id}`, {
     .catch(console.error);
 
 
+
 //DELETE MOVIE FUNCTION
 const deleteMovie = id => fetch(`${movieUrl}/${id}`, {
     method: 'DELETE',
@@ -86,11 +87,55 @@ function displayHtml() {
         $('#loading').html(html)
 
 
+        // edit click event
+
+        $('.editBtn').on('click', function (event) {
+            $('#myModal').show();
+        })
+
+        $('#saveChanges').click(function (e){
+            e.preventDefault();
+            let editedName = $('#edit-movie-name').val();
+            let editedRating = $('#edit-rating-selection').val();
+            console.log(editedName);
+            console.log(editedRating);
+            fetch(movieUrl,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: editedName,
+                    rating: editedRating
+                })
+            }).then(console.log(JSON.stringify({
+                title: editedName,
+                rating: editedRating
+            }))).then(displayHtml)
+                .catch(console.error)
+            e.preventDefault();
+        })
+        //     var otherProp = $('#hideId').text();
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "deleteuser.php",
+        //         data: $('form.deleteuser').serialize(),
+        //         success: function (msg) {
+        //             $("#deleteholder").html(msg)
+        //         },
+        //         error: function () {
+        //             $("#deleteholder").html("error")
+        //         }
+        //     });
+        // });
+
         // When edit button is clicked, modal button is clicked as well
 
-        $('.editBtn').click(function () {
-            $('#myBtn').click()
-        })
+        // $('.editBtn').click(function () {
+        //     $('#myBtn').click()
+        //
+        // })
+
 
         // delete event is working but not deleting the specific ID
         $('.deleteBtn').click(function () {
@@ -123,6 +168,7 @@ function displayHtml() {
     });
 }
 displayHtml();
+
 
 
 //------------------------------------------------------------------------
